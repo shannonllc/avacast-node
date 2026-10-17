@@ -1,0 +1,82 @@
+{
+  "name": "avacast",
+  "version": "0.3.0",
+  "description": "Node.js / TypeScript SDK for avacast realtime avatars: create sessions and make the avatar speak from your server, and show it in the browser.",
+  "keywords": [
+    "avacast",
+    "avatar",
+    "realtime",
+    "webrtc",
+    "sdk"
+  ],
+  "license": "MIT",
+  "author": "SHANNON LIMITED LIABILITY COMPANY",
+  "homepage": "https://avacast.jp/docs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shannonllc/avacast-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shannonllc/avacast-node/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./web": {
+      "import": {
+        "types": "./dist/web.d.ts",
+        "default": "./dist/web.js"
+      },
+      "require": {
+        "types": "./dist/web.d.cts",
+        "default": "./dist/web.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "web": [
+        "./dist/web.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage && tsup && node scripts/pack-check.mjs",
+    "prepublishOnly": "pnpm typecheck && vitest run --coverage && tsup && node scripts/pack-check.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@vitest/coverage-istanbul": "^4.1.11",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.11"
+  }
+}
